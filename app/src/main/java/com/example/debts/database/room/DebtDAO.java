@@ -3,6 +3,7 @@ package com.example.debts.database.room;
 import android.view.LayoutInflater;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -20,6 +21,13 @@ public interface DebtDAO {
 
     @Query("SELECT * FROM DebtEntity WHERE id = :id")
     Debt getId(int id);
+
+    @Query("DELETE FROM DebtEntity WHERE id = (SELECT id FROM DebtEntity ORDER BY id DESC LIMIT 1)")
+    int delete();
+
+
+
+
 
 
 

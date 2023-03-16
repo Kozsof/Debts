@@ -46,5 +46,15 @@ public class MainActivity extends AppCompatActivity {
                 }).start();
                 binding.recyclerView.getAdapter().notifyItemChanged(data.size() - 1);
             });
+            binding.delete.setOnClickListener(view -> {
+                if (data.size() >=1){
+                data.remove(data.size() - 1);
+                new Thread(() -> {
+                    debtDAO.delete();
+                }).start();
+                binding.recyclerView.getAdapter().notifyItemChanged(data.size());}
+            });
+
         }
+
     }
